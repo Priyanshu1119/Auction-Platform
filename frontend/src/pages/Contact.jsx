@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
@@ -26,10 +26,10 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_v01mtcu",
-        "template_3a1r5xp",
+        "service_js6282n",
+        "template_4jssaui",
         templateParams,
-        "YcOimjllS64zn4ghK"
+        "QfXE7D0Aa-FcmpYnW"
       )
       .then(() => {
         toast.success("Thank You! Your message has been sent successfully.");
@@ -37,9 +37,10 @@ const Contact = () => {
         navigateTo("/");
       })
       .catch((err) => {
-        toast.error("Failed to send message.");
-        setLoading(false);
-      });
+  console.error("EmailJS Error:", err);
+  toast.error(`Failed: ${err?.text || err?.status || "Check console"}`);
+  setLoading(false);
+});
   };
 
   return (

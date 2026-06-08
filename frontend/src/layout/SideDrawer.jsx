@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { RiAuctionFill } from "react-icons/ri";
 import { MdLeaderboard, MdDashboard } from "react-icons/md";
 import { SiGooglesearchconsole } from "react-icons/si";
@@ -181,14 +181,14 @@ const SideDrawer = () => {
           >
             Contact Us
           </Link>
-          <p className="text-stone-500">&copy; PrimeBid, LLC.</p>
+          <p className="text-stone-500">&copy; GoBid, PVT LTD.</p>
           <p className="text-stone-500">
             Degined By{" "}
             <Link
               to={"/"}
               className="font-semibold hover:text-[#d6482b] hover:transition-all hover:duration-150"
             >
-              CodeWithZeeshu
+              Priyanshu Dubey
             </Link>
           </p>
         </div>

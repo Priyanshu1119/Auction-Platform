@@ -1,7 +1,8 @@
 import { register } from "@/store/slices/userSlice";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -24,6 +25,12 @@ const SignUp = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (phone.length !== 11) {
+      toast.error("Phone number must contain exact 11 digits.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("userName", userName);
     formData.append("email", email);
@@ -97,9 +104,14 @@ const SignUp = () => {
               <div className="flex flex-col sm:flex-1">
                 <label className="text-[16px] text-stone-600">Phone</label>
                 <input
-                  type="number"
+                  type="text"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, "");
+                    if (val.length <= 11) setPhone(val);
+                  }}
+                  maxLength={11}
+                  placeholder="03XXXXXXXXX"
                   className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
                 />
               </div>
@@ -202,10 +214,14 @@ const SignUp = () => {
                 </label>
                 <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
                   <input
-                    type="number"
+                    type="text"
                     value={easypaisaAccountNumber}
                     placeholder="Easypaisa Account Number"
-                    onChange={(e) => setEasypaisaAccountNumber(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, "");
+                      if (val.length <= 11) setEasypaisaAccountNumber(val);
+                    }}
+                    maxLength={11}
                     className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none sm:flex-1"
                     disabled={role === "Bidder"}
                   />
@@ -226,8 +242,7 @@ const SignUp = () => {
               type="submit"
               disabled={loading}
             >
-              {loading && "Registering..."}
-              {!loading && "Register"}
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
         </div>

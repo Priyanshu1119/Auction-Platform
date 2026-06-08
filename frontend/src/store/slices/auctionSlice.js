@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -42,8 +43,8 @@ const auctionSlice = createSlice({
     },
     getAuctionDetailFailed(state, action) {
       state.loading = false;
-      state.auctionDetail = state.auctionDetail;
-      state.auctionBidders = state.auctionBidders;
+      // state.auctionDetail = state.auctionDetail;
+      // state.auctionBidders = state.auctionBidders;
     },
     getMyAuctionsRequest(state, action) {
       state.loading = true;
